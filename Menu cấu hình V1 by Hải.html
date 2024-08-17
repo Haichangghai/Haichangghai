@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Cấu Hình V1 by Hải</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333333; /* Nền đen nhạt */
+            color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .password-container {
+            text-align: center;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .password-container input[type="password"] {
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 400px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .password-container button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .password-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            background-color: #1A1A1A;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            max-width: 400px;
+            width: 100%;
+            display: none;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        select, input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #FFFFFF;
+            color: #000000;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+        }
+
+        input[type="file"]::file-selector-button {
+            padding: 10px;
+            border: none;
+            background-color: #007BFF;
+            color: #FFFFFF;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="file"]::file-selector-button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: #FF3333;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .open-app {
+            padding: 10px;
+            background-color: #007BFF;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .open-app:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="password-container">
+        <h1>Nhập mật khẩu</h1>
+        <input type="password" id="password" placeholder="Nhập mật khẩu">
+        <button onclick="checkPassword()">Submit</button>
+        <p id="error-message" class="error-message">Sai mật khẩu, vui lòng liên hệ Hải béo.</p>
+    </div>
+
+    <div class="container" id="menu-container">
+        <h1>Menu Cấu Hình V1 by Hải</h1>
+        <div class="form-group">
+            <label for="app">App:</label>
+            <select id="app">
+                <option>Free Fire</option>
+                <option>Free Fire Max</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="device">Chọn Thiết Bị:</label>
+            <select id="device">
+                <option>iPad</option>
+                <option>iPhone</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ios">Chọn Phiên Bản iOS:</label>
+            <select id="ios">
+                <option>14.0</option>
+                <option>15.0</option>
+                <option>16.0</option>
+                <option>17.0</option>
+                <option>18.0</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="config">Chọn Cấu Hình:</label>
+            <select id="config">
+                <option>Cấu Hình Thấp</option>
+                <option>Cấu Hình Bình Thường</option>
+                <option>Cấu Hình Cao</option>
+                <option>Cấu Hình Vip Max</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="refresh-rate">Buff Màn Hình:</label>
+            <select id="refresh-rate">
+                <option>60Hz</option>
+                <option>120Hz</option>
+                <option>144Hz</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="file">Tải Tệp Cấu Hình:</label>
+            <input type="file" id="file">
+        </div>
+        <button class="open-app" onclick="openApp('freefire')">Mở Free Fire</button>
+        <button class="open-app" onclick="openApp('freefiremax')">Mở Free Fire Max</button>
+    </div>
+
+    <script>
+        function checkPassword() {
+            var passwordInput = document.getElementById("password").value;
+            var errorMessage = document.getElementById("error-message");
+            var menuContainer = document.getElementById("menu-container");
+            var passwordCorrect = "Haibeo";
+
+            if (passwordInput === passwordCorrect) {
+                errorMessage.style.display = "none";
+                menuContainer.style.display = "block";
+                document.querySelector('.password-container').style.display = 'none';
+            } else {
+                errorMessage.style.display = "block";
+            }
+        }
+
+        function openApp(appName) {
+            if (appName === 'freefire') {
+                window.location.href = 'intent://freefire#Intent;scheme=app;package=com.dts.freefireth;end';
+            } else if (appName === 'freefiremax') {
+                window.location.href = 'intent://freefiremax#Intent;scheme=app;package=com.dts.freefiremax;end';
+            }
+        }
+    </script>
+</body>
+</html>
